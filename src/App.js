@@ -1,24 +1,24 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
-
+import NavBar from './components/hero/NavBar';
+import ProductSection from './components/productSection/Product';
 function App() {
+  const [menuClicked,setMenuClicked]=useState(false)
+  const menuClickHandler=()=>{
+    setMenuClicked(true)
+    console.log("menu clicked")
+  }
+  const closeButtonHandler=()=>{
+    setMenuClicked(false)
+    console.log("Close button clicked.")
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <NavBar menuClicked={menuClicked} menuClickHandler={menuClickHandler} closeButtonHandler={closeButtonHandler}/>
+    {!menuClicked &&<ProductSection/>}
+    </>
+      
+    
   );
 }
 
